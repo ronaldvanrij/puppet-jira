@@ -49,6 +49,8 @@ class jira (
   $datacenter   = false,
   $shared_homedir = undef,
 
+  $installed_plugins = [],
+
   # Database Settings
   $db                      = 'postgresql',
   $dbuser                  = 'jiraadm',
@@ -206,6 +208,8 @@ class jira (
   } ->
   class { 'jira::config':
   } ~>
+  class { 'jira::plugins':
+  } ->
   class { 'jira::service':
   } ->
   anchor { 'jira::end': }
